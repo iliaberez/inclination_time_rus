@@ -23,7 +23,7 @@ class TimerCustom{
   TimerCustom(this.day, this.hour, this.minutes,this.seconds);
 }
 ```
-Основные методы
+Основные методы/n
 Получение разницы во времени(eventStartDate - дата начала события). Возвращает TimerCustom.
 ```
 TimerCustom getDifferenceTime(DateTime eventStartDate)

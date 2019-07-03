@@ -19,7 +19,6 @@ class TimerCustom{
   }
 }
 
-
 String getStrDay(int day){
   int temp = day % 10;
   if(temp == 0){
