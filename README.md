@@ -37,23 +37,3 @@ String getStrMinute(int minut)
 String getStrSeconds(int sec)
 ```
 [Пример](https://github.com/iliaberez/inclination_time_rus/tree/master/example)
-
-## Начало работы
-1. Добавьте в pubspec.yaml
-```
-  dependecies:
-      flutter:
-          sdk: flutter
-      inclinator_time_rus: 
-```
-2. Получите package с помощью терминала и комманды
-```
-  $ flutter pub get
-```
-3. Нужно импортировать package в ваш проект
-```
-import 'package:inclination_time_rus/inclination_time_rus.dart';
-```
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
