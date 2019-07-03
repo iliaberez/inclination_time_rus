@@ -23,7 +23,7 @@ class TimerCustom{
   TimerCustom(this.day, this.hour, this.minutes,this.seconds);
 }
 ```
-####Основные методы
+###Основные методы
 Получение разницы во времени(eventStartDate - дата начала события).
 Возвращает TimerCustom.
 ```
@@ -45,7 +45,7 @@ String getStrMinute(int minut)
 ```
 String getStrSeconds(int sec)
 ```
-###[Пример](https://github.com/iliaberez/inclination_time_rus/tree/master/example)
+[Пример](https://github.com/iliaberez/inclination_time_rus/tree/master/example)
 
 For help getting started with Flutter, view our 
 [online documentation](https://flutter.dev/docs), which offers tutorials, 
