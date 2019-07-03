@@ -1,8 +1,8 @@
 name: inclination_time_rus
 description: incinator_for_time_rus
 version: 0.0.1
-author: iliaberez
-homepage:
+author: Ilya Berezovskiy <ilia3651@gmail.com>
+homepage: https://github.com/iliaberez/inclination_time_rus
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
