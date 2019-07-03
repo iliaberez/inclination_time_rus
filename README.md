@@ -1,14 +1,33 @@
 # inclination_time_rus
 
-A new Flutter package project.
+Package для склонения времени 
 
-## Getting Started
+## Начало работы
 
 ```yaml
     dependecies:
         flutter:
             sdk: flutter
-        inclinator_time_rus
+        inclinator_time_rus: 
+```
+
+### Использование
+
+Основные функции
+```
+String getStrDay(int day)
+```
+Используется для получения строки - дней/дня/день
+```
+String getStrHours(int hours)
+```
+
+```
+String getStrMinute(int minut)
+```
+
+```
+String getStrSeconds(int sec)
 ```
 
 For help getting started with Flutter, view our 
