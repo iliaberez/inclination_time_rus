@@ -1,23 +1,24 @@
 library inclination_time_rus;
 
-class Timer{
+class TimerCustom{
   int day;
-  int hours;
+  int hour;
   int minutes;
   int seconds;
-  Timer(this.day, this.hours, this.minutes,this.seconds);
+  TimerCustom(this.day, this.hour, this.minutes,this.seconds);
 
-  Timer getDifferenceTime(DateTime eventStartDate){
-    DateTime now = DateTime.now().toUtc();
-    Duration getDifference() => eventStartDate.difference(now);
+  DateTime getTimeNow() => DateTime.now().toUtc();
 
+  TimerCustom getDifferenceTime(DateTime eventStartDate){
+    Duration getDifference() => eventStartDate.difference(getTimeNow());
     var days = getDifference().inDays;
-    var hours = getDifference().inMinutes - days*24;
-    var minutes = getDifference().inMinutes - days * 24 * 60 - hours * 60;
-    var seconds = getDifference().inSeconds - days * 24 * 60 - hours * 60 - minutes*60;
-    return Timer(days,hours,minutes,seconds);
+    var hour = getDifference().inMinutes - days*24;
+    var minutes = getDifference().inMinutes - days * 24 * 60 - hour * 60;
+    var seconds = getDifference().inSeconds - days * 24 * 60 - hour * 60 - minutes*60;
+    return TimerCustom(days,hour,minutes,seconds);
   }
 }
+
 
 String getStrDay(int day){
   int temp = day % 10;

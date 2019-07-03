@@ -14,16 +14,10 @@ class Timer extends StatefulWidget {
   _TimerState createState() => _TimerState();
 }
 
-class TimerModel {
-  int day;
-  int hour;
-  int minute;
-  TimerModel(this.day, this.hour, this.minute);
-}
-
 class _TimerState extends State<Timer> with TickerProviderStateMixin {
-  TimerModel timer;
   AnimationController _animationController;
+
+  TimerCustom timer;
 
   DateTime _eventStartDate = DateTime.utc(2019, 8, 24, 00, 00, 00);
   Duration getDifference() =>
@@ -34,10 +28,7 @@ class _TimerState extends State<Timer> with TickerProviderStateMixin {
       await Future<void>.delayed(Duration(minutes: 1), () {
         if (mounted) {
           setState(() {
-            timer = TimerModel(
-                getDifference().inDays,
-                getDifference().inHours - getDifference().inDays * 24,
-                getDifference().inMinutes - getDifference().inHours * 60);
+            createTimer();
           });
         }
       });
@@ -45,15 +36,11 @@ class _TimerState extends State<Timer> with TickerProviderStateMixin {
   }
 
   void createTimer() {
-    var duration = getDifference();
-    var days = duration.inDays;
-    var hours = duration.inHours - days * 24;
-    var minutes = duration.inMinutes - days * 24 * 60 - hours * 60;
     setState(() {
-      if (duration.isNegative) {
-        timer = TimerModel(00, 00, 00);
-      } else {
-        timer = TimerModel(days, hours, minutes);
+      if(timer.getDifferenceTime(_eventStartDate).seconds < 0){
+        timer = TimerCustom(00,00,00,00);
+      }else{
+        timer = timer.getDifferenceTime(_eventStartDate);
       }
     });
   }
@@ -99,15 +86,17 @@ class _TimerState extends State<Timer> with TickerProviderStateMixin {
                       Text(
                         '${timer.day}',
                         style: TextStyle(
-                            fontSize: 44,
-                            color: Colors.blue,
-                            fontFamily: 'mt-bi'),
+                          fontSize: 44,
+                          color: Colors.blue,
+                        ),
                       ),
-                      Text('${getStrDay(timer.day)}',
-                          style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.blue,
-                              fontFamily: 'mt-bi')),
+                      Text(
+                        '${getStrDay(timer.day)}',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.blue,
+                        ),
+                      ),
                     ],
                   ),
                   SizedBox(width: 5),
@@ -116,10 +105,11 @@ class _TimerState extends State<Timer> with TickerProviderStateMixin {
                     child: Transform.translate(
                       offset: Offset(0, -8),
                       child: Text(':',
-                          style: TextStyle(
-                              fontSize: 38,
-                              color: Colors.blue,
-                              fontFamily: 'mt-bi')),
+                        style: TextStyle(
+                          fontSize: 38,
+                          color: Colors.blue,
+                        )
+                      ),
                     ),
                   ),
                   SizedBox(width: 5),
@@ -128,15 +118,16 @@ class _TimerState extends State<Timer> with TickerProviderStateMixin {
                       Text(
                         '${timer.hour}',
                         style: TextStyle(
-                            fontSize: 44,
-                            color: Colors.blue,
-                            fontFamily: 'mt-bi'),
+                          fontSize: 44,
+                          color: Colors.blue,
+                        ),
                       ),
                       Text('${getStrHours(timer.hour)}',
-                          style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.blue,
-                              fontFamily: 'mt-bi')),
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.blue,
+                        )
+                      ),
                     ],
                   ),
                   SizedBox(width: 5),
@@ -145,27 +136,29 @@ class _TimerState extends State<Timer> with TickerProviderStateMixin {
                     child: Transform.translate(
                       offset: Offset(0, -8),
                       child: Text(':',
-                          style: TextStyle(
-                              fontSize: 38,
-                              color: Colors.blue,
-                              fontFamily: 'mt-bi')),
+                        style: TextStyle(
+                          fontSize: 38,
+                          color: Colors.blue,
+                        )
+                      ),
                     ),
                   ),
                   SizedBox(width: 5),
                   Column(
                     children: <Widget>[
                       Text(
-                        '${timer.minute}',
+                        '${timer.minutes}',
                         style: TextStyle(
-                            fontSize: 44,
-                            color: Colors.blue,
-                            fontFamily: 'mt-bi'),
+                          fontSize: 44,
+                          color: Colors.blue,
+                        ),
                       ),
-                      Text('${getStrMinute(timer.minute)}',
-                          style: TextStyle(
-                              fontSize: 14,
-                              color: Colors.blue,
-                              fontFamily: 'mt-bi')),
+                      Text('${getStrMinute(timer.minutes)}',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.blue,
+                        )
+                      ),
                     ],
                   ),
                 ],
